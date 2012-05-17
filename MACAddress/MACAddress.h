@@ -1,7 +1,7 @@
 //
-//  UIDevice+MACAddress.h
+//  MACAddress.h
 //
-//  Version 1.0
+//  Version 1.1
 //
 //  Created by Nick Lockwood on 12/01/2012.
 //  Copyright (C) 2012 Charcoal Design
@@ -30,8 +30,21 @@
 //  3. This notice may not be removed or altered from any source distribution.
 //
 
+
+@interface MACAddress : NSObject
+
++ (NSString *)address;
++ (NSString *)addressWithDelimiter:(NSString *)delimiter;
+
+@end
+
+
+#ifdef __IPHONE_OS_VERSION_MAX_ALLOWED
+
 @interface UIDevice (MACAddress)
 
 - (NSString *)MACAddress;
 
 @end
+
+#endif

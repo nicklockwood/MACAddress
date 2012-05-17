@@ -1,7 +1,7 @@
 //
-//  UIDevice+MACAddress.m
+//  MACAddress.h
 //
-//  Version 1.0
+//  Version 1.1
 //
 //  Created by Nick Lockwood on 12/01/2012.
 //  Copyright (C) 2012 Charcoal Design
@@ -30,15 +30,16 @@
 //  3. This notice may not be removed or altered from any source distribution.
 //
 
-#import "UIDevice+MACAddress.h"
+#import "MACAddress.h"
 #include <sys/socket.h>
 #include <sys/sysctl.h>
 #include <net/if.h>
 #include <net/if_dl.h>
 
-@implementation UIDevice (MACAddress)
 
-- (NSString *)MACAddress
+@implementation MACAddress
+
++ (NSString *)address
 {
     static NSString *macAddress = nil;
     if (macAddress == nil)
@@ -78,4 +79,23 @@
     return macAddress;
 }
 
++ (NSString *)addressWithDelimiter:(NSString *)delimiter
+{
+    return [[self address] stringByReplacingOccurrencesOfString:@":" withString:delimiter ?: @""];
+}
+
 @end
+
+
+#ifdef __IPHONE_OS_VERSION_MAX_ALLOWED
+
+@implementation UIDevice (MACAddress)
+
+- (NSString *)MACAddress
+{
+    return [MACAddress address];
+}
+
+@end
+
+#endif

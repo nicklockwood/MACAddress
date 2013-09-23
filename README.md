@@ -1,3 +1,9 @@
+NOTE: As of iOS 7, accessing the MAC address is no longer supported on iOS.
+-------------------------------------
+
+Use of the MACAddress library on iOS is not recommended except for backwards compatibility with iOS 5, will return only zeros on iOS 7, and may result in App Store rejection. It is still fine to use on Mac OS X.
+
+
 Purpose
 --------------
 
@@ -31,13 +37,13 @@ MACAddress class
 
 The MACAddress class provides a single class function.
 
-+ (NSString *)address;
+    + (NSString *)address;
 	
 This method returns the device's MAC address as a colon-delimited hexadecimal string in the form "00:00:00:00:00:00".
 
 If you do not want the colons, you can specify your own delimiter using the following method. To remove the delimiter altogether, pass an empty string.
 
-+ (NSString *)addressWithDelimiter:(NSString *)delimiter;
+    + (NSString *)addressWithDelimiter:(NSString *)delimiter;
 
 
 UIDevice class
@@ -45,6 +51,6 @@ UIDevice class
 
 For convenience and backwards compatibility with the 1.0 release, the MAC address is also available via the following category method on UIDevice:
 
-- (NSString *)MACAddress;
+    - (NSString *)MACAddress;
 
 The UIDevice class is only available on iOS.
